@@ -1,0 +1,22 @@
+# Python
+*.pyc
+*.pyo
+__pycache__/
+
+# Virtual environment
+venv/
+*.env
+
+# Flask
+instance/
+*.db
+*.sqlite3
+
+# VSCode
+.vscode/
+
+# Logs
+*.log
+
+# System files
+.DS_Store
