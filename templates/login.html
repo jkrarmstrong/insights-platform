@@ -1,0 +1,31 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+</head>
+<body>
+    <h2>Login</h2>
+
+    <!-- Login form uses POST method to submit data -->
+    <form method="POST">
+        {{ form.hidden_tag() }}
+        
+        <!-- Email field -->
+        <div class="form-group">
+            <label for="email">Email</label>
+            {{ form.email(class="form-control") }}
+        </div>
+
+        <!-- Password field -->
+        <div class="form-group">
+            <label for="password">Password</label>
+            {{ form.password(class="form-control") }}
+        </div>
+
+        <!-- Submit button to login -->
+        <button type="submit">Login</button>
+    </form>
+    
+</body>
+</html>

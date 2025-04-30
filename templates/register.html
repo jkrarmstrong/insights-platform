@@ -1,0 +1,38 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+</head>
+<body>
+    <h2>Register</h2>
+
+    <!-- Registration form uses POST method to send data to the server -->
+    <form method="POST">
+        {{ form.hidden_tag() }}
+
+        <div class="form-group">
+            <!-- Label for email field -->
+            <label for="email">Email</label>
+            {{ form.email(class="form-control") }}
+        </div>
+
+        <div class="form-group">
+            <!-- Label for password field -->
+            <label for="password">Password</label>
+            {{ form.password(class="form-control") }}
+        </div>
+
+        <div class="form-group">
+            <!-- Label for confirm password field -->
+            <label for="confirm_password">Confirm Password</label>
+            {{ form.confirm_password(class="form-control") }}
+        </div>
+
+        <!-- Submit button for the form -->
+        <button type="submit">Register</button>
+    </form>
+
+    
+</body>
+</html>

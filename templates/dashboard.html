@@ -1,0 +1,24 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+</head>
+<body>
+    <h2>Dashboard</h2>
+    <p>Your uploaded data and analysis</p>
+    
+    <h3>Data Analysis</h3>
+    <form method="GET" action="{{ url_for('analyze_data') }}">
+        <button type="submit">Analyze Data</button>
+    </form>
+
+    <div>
+        <!-- Display analyzed data if there is any -->
+         {% if avarage %}
+            <p>Avarage of the selected column: {{ avarage }}</p>
+        {% endif %}
+    </div>
+    
+</body>
+</html>
