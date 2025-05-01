@@ -1,0 +1,18 @@
+
+@import 'base/text.css';
+@import 'layout/_header.css';
+@import 'layout/footer.css';
+@import 'components/_buttons.css';
+@import 'components/_forms.css';
+
+/* colorhunt URL: https://colorhunt.co/palette/f8ede3bdd2b6a2b29f798777 */
+
+
+:root {
+
+    --dark-blue: #798777;   /* Primary text color */
+    --blue-gray: #BDD2B6;   /* Background color for header or navigation */
+    --light-blue-green: #A2B29F;   /* Secondary text color or button color */
+    --light-cream-yellow: #F8EDE3;  /* Backround color */
+}
+

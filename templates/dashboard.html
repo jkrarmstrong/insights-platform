@@ -2,9 +2,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
     <title>Dashboard</title>
 </head>
 <body>
+    {% include 'header.html' %}
     <h2>Dashboard</h2>
     <p>Your uploaded data and analysis</p>
     
@@ -15,8 +17,8 @@
 
     <div>
         <!-- Display analyzed data if there is any -->
-         {% if avarage %}
-            <p>Avarage of the selected column: {{ avarage }}</p>
+         {% if average %}
+            <p>Average of the selected column: {{ average }}</p>
         {% endif %}
     </div>
     

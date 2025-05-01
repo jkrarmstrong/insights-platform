@@ -10,6 +10,7 @@ import os
 from werkzeug.utils import secure_filename
 from flask_migrate import Migrate
 from datetime import timedelta
+from forms.upload_forms import UploadForm
 
 
 # --- Flask App setup ---
@@ -82,16 +83,24 @@ def analyze_data():
     Analyzes the data. For now it calculates the mean of a given column.
     """
     data = current_user.get_data()
-    if data is None:
-        column_name = "value_column"
-        if column_name in data.columns:
-            average = data[column_name].mean()
-            return jsonify({"average": average})
-        else:
-            flash("Column not found in data", "danger")
-    else:
-        flash("No data found for analyze", "danger")
+    print(f"Data retrieved: {data}") # For debugging
 
+    if not data or len(data) == 0:
+        flash("No data found to analyze", "danger")
+        return redirect(url_for("dashboard"))
+    
+    column_name = "value_column"  # This should match the column name from your CSV file
+    data_frame = pd.DataFrame(data[0])  # Convert the first entry to a DataFrame
+
+    print(f"Dataframe columns: {data_frame.columns}")  # Debugging: check columns in DataFrame
+
+    if column_name in data_frame.columns:
+        average = data_frame[column_name].mean()
+        print(f"Average calculated: {average}")  # Debugging: check the calculated average
+        return render_template("dashboard.html", title="Dashboard", average=average)
+    else:
+        flash(f"Column '{column_name}' not found in data", "danger")
+    
     return redirect(url_for("dashboard"))
 
 
@@ -101,6 +110,8 @@ def upload_data():
     """
     This function handles file uploads.
     """
+
+    form = UploadForm()
     if request.method == "POST":
         if "file" not in request.files: # Check for files field in form
             flash("No file part", "danger")
@@ -126,7 +137,7 @@ def upload_data():
             return redirect(url_for("dashboard"))
         
     # If method is GET, render upload_data.html
-    return render_template("upload_data.html", title="Upload Data")
+    return render_template("upload_data.html", title="Upload Data", form=form)
 
 
 

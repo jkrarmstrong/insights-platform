@@ -1,0 +1,12 @@
+
+
+.form-button {
+    width: 20%;
+    display: flex;
+    justify-content: center;
+    border: none;
+    border-radius: 4px;
+    background-color: white;
+    background-color: #C0D3B3;
+    padding: 6px;
+}

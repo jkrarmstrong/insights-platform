@@ -1,0 +1,16 @@
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: var(--light-cream-yellow);
+    color: var(--dark-blue);
+}
+
+h1 {
+    font-size: 2rem;
+    text-align: center;
+}
+
+h2 {
+    text-align: center;
+    padding-top: 5rem;
+}

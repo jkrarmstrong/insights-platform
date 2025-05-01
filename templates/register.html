@@ -2,9 +2,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
     <title>Register</title>
 </head>
 <body>
+    {% include 'header.html' %}
     <h2>Register</h2>
 
     <!-- Registration form uses POST method to send data to the server -->
@@ -30,7 +32,7 @@
         </div>
 
         <!-- Submit button for the form -->
-        <button type="submit">Register</button>
+        <button class="form-button" type="submit">Register</button>
     </form>
 
     

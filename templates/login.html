@@ -2,9 +2,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
     <title>Login</title>
 </head>
 <body>
+    {% include 'header.html' %}
     <h2>Login</h2>
 
     <!-- Login form uses POST method to submit data -->
@@ -24,7 +26,7 @@
         </div>
 
         <!-- Submit button to login -->
-        <button type="submit">Login</button>
+        <button class="form-button" type="submit">Login</button>
     </form>
     
 </body>
