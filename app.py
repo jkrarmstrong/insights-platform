@@ -82,24 +82,45 @@ def analyze_data():
     """
     Analyzes the data. For now it calculates the mean of a given column.
     """
+
+    analysis_type = request.args.get("analysis_type")
+
     data = current_user.get_data()
-    print(f"Data retrieved: {data}") # For debugging
+    print(f"Data retrieved {data}")
 
     if not data or len(data) == 0:
         flash("No data found to analyze", "danger")
         return redirect(url_for("dashboard"))
     
-    column_name = "value_column"  # This should match the column name from your CSV file
-    data_frame = pd.DataFrame(data[0])  # Convert the first entry to a DataFrame
+    column_name = "value_column"
+    df = pd.DataFrame(data[0])
+    print(f"Dataframe columns: {df.columns}")
 
-    print(f"Dataframe columns: {data_frame.columns}")  # Debugging: check columns in DataFrame
+    if column_name in df.columns:
+        if analysis_type == "average":
+            result = df[column_name].mean()
+            analysis_result = f"Average: {result}"
+        elif analysis_type == "median":
+            result = df[column_name].median()
+            analysis_result = f"Median: {result}"
+        elif analysis_type == "mode":
+            result = df[column_name].mode().tolist()
+            analysis_result = f"Mode: {', '.join(map(str, result))}"
+        elif analysis_type == "max":
+            result = df[column_name].max()
+            analysis_result = f"Max: {result}"
+        elif analysis_type == "min":
+            result = df[column_name].min()
+            analysis_result = f"Min: {result}"
+        elif analysis_type == "std_dev":
+            result = df[column_name].std()
+            analysis_result = f"Standard Deviation: {result}"
+        else:
+            analysis_result = f"Invalid analysis type selected."
 
-    if column_name in data_frame.columns:
-        average = data_frame[column_name].mean()
-        print(f"Average calculated: {average}")  # Debugging: check the calculated average
-        return render_template("dashboard.html", title="Dashboard", average=average)
+        return render_template("dashboard.html", title="Dashboard", analysis_result=analysis_result)
     else:
-        flash(f"Column '{column_name}' not found in data", "danger")
+        flash(f"Column {column_name} not found in data", "danger")
     
     return redirect(url_for("dashboard"))
 

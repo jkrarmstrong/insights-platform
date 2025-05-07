@@ -12,15 +12,27 @@
     
     <h3>Data Analysis</h3>
     <form method="GET" action="{{ url_for('analyze_data') }}">
-        <button type="submit">Analyze Data</button>
+        <p style="font-style: italic;">Select Analysis Type</p>
+        <select name="analysis_type" class="drop-down-menu" id="analysis-dropdown">
+            <option value="average">Average</option>
+            <option value="median">Median</option>
+            <option value="mode">Mode</option>
+            <option value="std_dev">Standard Deviation</option>
+            <option value="max">Max</option>
+            <option value="min">Min</option>
+        </select>
+        <button type="submit" class="analyze-btn">Analyze Data</button>
     </form>
 
     <div>
         <!-- Display analyzed data if there is any -->
-         {% if average %}
-            <p>Average of the selected column: {{ average }}</p>
+        {% if analysis_result %}
+            <p>{{ analysis_result }}</p>
+        {% else %}
+            <p>No analysis performed yet.</p>
         {% endif %}
     </div>
-    
+
+    <script src="{{ url_for('static', filename='js/form.js') }}"></script>
 </body>
 </html>
